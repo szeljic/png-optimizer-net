@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace PNGOptimizer
 {
@@ -176,9 +177,11 @@ namespace PNGOptimizer
 
         private void btnOptimize_Click(object sender, EventArgs e)
         {
-            Optimizer optimizer = new Optimizer(listOfFiles);
-            string pom = optimizer.startOptimization(destinationTB.Text);
-            label1.Text = pom;
+
+            Optimizer optimizer = new Optimizer(listOfFiles, destinationTB.Text);
+            Thread thread = new Thread(new ThreadStart(optimizer.startOptimization));
+            thread.Start();
+            
         }
     }
 }
