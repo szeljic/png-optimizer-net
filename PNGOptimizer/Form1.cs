@@ -28,6 +28,7 @@ namespace PNGOptimizer
             this.destinationTB.AutoSize = false;
             this.destinationTB.Size = new System.Drawing.Size(600, 30);
             this.btnFile.Checked = true;
+            this.rbNormal.Checked = true;
         }
               
         private void radioButton1_Click(object sender, EventArgs e)
@@ -182,6 +183,11 @@ namespace PNGOptimizer
             Thread thread = new Thread(new ThreadStart(optimizer.startOptimization));
             thread.Start();
             
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
