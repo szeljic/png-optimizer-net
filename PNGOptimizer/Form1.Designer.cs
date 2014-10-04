@@ -211,10 +211,10 @@
             this.rbHigh.AutoSize = true;
             this.rbHigh.Location = new System.Drawing.Point(6, 64);
             this.rbHigh.Name = "rbHigh";
-            this.rbHigh.Size = new System.Drawing.Size(50, 21);
+            this.rbHigh.Size = new System.Drawing.Size(52, 21);
             this.rbHigh.TabIndex = 14;
             this.rbHigh.TabStop = true;
-            this.rbHigh.Text = "high";
+            this.rbHigh.Text = "High";
             this.rbHigh.UseVisualStyleBackColor = true;
             // 
             // rbNormal
@@ -222,10 +222,10 @@
             this.rbNormal.AutoSize = true;
             this.rbNormal.Location = new System.Drawing.Point(6, 40);
             this.rbNormal.Name = "rbNormal";
-            this.rbNormal.Size = new System.Drawing.Size(65, 21);
+            this.rbNormal.Size = new System.Drawing.Size(67, 21);
             this.rbNormal.TabIndex = 13;
             this.rbNormal.TabStop = true;
-            this.rbNormal.Text = "normal";
+            this.rbNormal.Text = "Normal";
             this.rbNormal.UseVisualStyleBackColor = true;
             // 
             // rbLow
@@ -233,10 +233,10 @@
             this.rbLow.AutoSize = true;
             this.rbLow.Location = new System.Drawing.Point(6, 16);
             this.rbLow.Name = "rbLow";
-            this.rbLow.Size = new System.Drawing.Size(45, 21);
+            this.rbLow.Size = new System.Drawing.Size(48, 21);
             this.rbLow.TabIndex = 12;
             this.rbLow.TabStop = true;
-            this.rbLow.Text = "low";
+            this.rbLow.Text = "Low";
             this.rbLow.UseVisualStyleBackColor = true;
             // 
             // btnClose
@@ -320,6 +320,7 @@
             this.Controls.Add(this.btnFolder);
             this.Controls.Add(this.btnFile);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "PNG Optimizer";
             this.Load += new System.EventHandler(this.Form1_Load);

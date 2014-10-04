@@ -25,15 +25,12 @@ namespace PNGOptimizer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Icon = new Icon("..\\..\\resources\\img\\pngoptimizer.ico");
             this.loadTB.AutoSize = false;
             this.loadTB.Size = new System.Drawing.Size(600, 30);
             this.destinationTB.AutoSize = false;
             this.destinationTB.Size = new System.Drawing.Size(600, 30);
             this.btnFile.Checked = true;
             this.rbNormal.Checked = true;
-
-            
         }
               
         private void radioButton1_Click(object sender, EventArgs e)
@@ -124,48 +121,52 @@ namespace PNGOptimizer
                 folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.Desktop;
                 folderBrowserDialog.Description = "Select the directory.";
                 folderBrowserDialog.ShowNewFolderButton = false;
-                folderBrowserDialog.ShowDialog();
+                DialogResult result = folderBrowserDialog.ShowDialog();
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
 
                 string path = folderBrowserDialog.SelectedPath;
                 this.loadTB.Text = path;
-
                 string[] paths = System.IO.Directory.GetFiles(path);
 
                 int i = listOfFiles.Items.Count + 1;
-                int k = 0;
 
                 foreach (String item in paths)
                 {
-                    ListViewItem lvi = new ListViewItem(i.ToString());
+                    if(item.EndsWith(".png") || item.EndsWith(".tiff") || item.EndsWith(".gif") || item.EndsWith(".bmp") || item.EndsWith(".pnm"))
+                    {
+                        ListViewItem lvi = new ListViewItem(i.ToString());
 
-                    lvi.SubItems.Add(System.IO.Path.GetFileName(item));
+                        lvi.SubItems.Add(System.IO.Path.GetFileName(item));
 
-                    if (item.EndsWith(".png"))
-                    {
-                        lvi.SubItems.Add("PNG");
-                    }
-                    else if (item.EndsWith(".bmp"))
-                    {
-                        lvi.SubItems.Add("BMP");
-                    }
-                    else if (item.EndsWith(".tiff"))
-                    {
-                        lvi.SubItems.Add("TIFF");
-                    }
-                    else if (item.EndsWith(".gif"))
-                    {
-                        lvi.SubItems.Add("GIF");
-                    }
-                    else if (item.EndsWith(".pnm"))
-                    {
-                        lvi.SubItems.Add("PNM");
-                    }
+                        if (item.EndsWith(".png"))
+                        {
+                            lvi.SubItems.Add("PNG");
+                        }   
+                        else if (item.EndsWith(".bmp"))
+                        {
+                            lvi.SubItems.Add("BMP");
+                        }
+                        else if (item.EndsWith(".tiff"))
+                        {
+                            lvi.SubItems.Add("TIFF");
+                        }
+                        else if (item.EndsWith(".gif"))
+                        {
+                            lvi.SubItems.Add("GIF");
+                        }
+                        else if (item.EndsWith(".pnm"))
+                        {
+                            lvi.SubItems.Add("PNM");
+                        }
 
-                    lvi.SubItems.Add(item);
-                    listOfFiles.Items.Add(lvi);
+                        lvi.SubItems.Add(item);
+                        listOfFiles.Items.Add(lvi);
 
-                    i++;
-                    k++;
+                        i++;
+                        }
                 }
             }
         }
@@ -196,6 +197,7 @@ namespace PNGOptimizer
             }
 
             this.label2.Text = @"Optimization in progress...";
+
             progressBar.Maximum = 100;
             progressBar.Value = 0;
 
