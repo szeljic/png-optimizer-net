@@ -15,7 +15,8 @@ namespace PNGOptimizer
 {
     public partial class Form1 : Form
     {
-        Thread thread;
+        private Thread thread;
+
         public Form1()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace PNGOptimizer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Icon = new Icon("color_settings_icon.ico");
+            this.Icon = new Icon("..\\..\\resources\\img\\pngoptimizer.ico");
             this.loadTB.AutoSize = false;
             this.loadTB.Size = new System.Drawing.Size(600, 30);
             this.destinationTB.AutoSize = false;
@@ -179,12 +180,15 @@ namespace PNGOptimizer
 
         private void btnOptimize_Click(object sender, EventArgs e)
         {
+            progressBar.Maximum = listOfFiles.Items.Count;
+            progressBar.Value = 0;
+
             int quality;
             if (rbLow.Checked)
             {
                 quality = 1;
             }
-            else if(rbNormal.Checked)
+            else if (rbNormal.Checked)
             {
                 quality = 2;
             }
@@ -193,20 +197,14 @@ namespace PNGOptimizer
                 quality = 3;
             }
 
-
             Optimizer optimizer = new Optimizer(listOfFiles, destinationTB.Text, quality);
             thread = new Thread(new ThreadStart(optimizer.startOptimization));
             thread.IsBackground = true;
             thread.Start();
-            
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (thread.IsAlive)
-            {
-                thread.Abort();
-            }
             this.Close();
         }
 

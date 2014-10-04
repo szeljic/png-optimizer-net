@@ -45,13 +45,13 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbLow = new System.Windows.Forms.RadioButton();
-            this.rbNormal = new System.Windows.Forms.RadioButton();
             this.rbHigh = new System.Windows.Forms.RadioButton();
+            this.rbNormal = new System.Windows.Forms.RadioButton();
+            this.rbLow = new System.Windows.Forms.RadioButton();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -129,7 +129,7 @@
             this.destinationTB.MinimumSize = new System.Drawing.Size(500, 30);
             this.destinationTB.Name = "destinationTB";
             this.destinationTB.ReadOnly = true;
-            this.destinationTB.Size = new System.Drawing.Size(500, 30);
+            this.destinationTB.Size = new System.Drawing.Size(500, 34);
             this.destinationTB.TabIndex = 6;
             // 
             // btnSpecify
@@ -163,7 +163,7 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.listOfFiles.Font = new System.Drawing.Font("Microsoft MHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.listOfFiles.Font = new System.Drawing.Font("Microsoft MHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.listOfFiles.FullRowSelect = true;
             this.listOfFiles.GridLines = true;
             this.listOfFiles.Location = new System.Drawing.Point(12, 48);
@@ -197,6 +197,7 @@
             this.groupBox1.Controls.Add(this.rbHigh);
             this.groupBox1.Controls.Add(this.rbNormal);
             this.groupBox1.Controls.Add(this.rbLow);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft MHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.groupBox1.Location = new System.Drawing.Point(12, 388);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(83, 90);
@@ -204,38 +205,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Quality";
             // 
-            // rbLow
+            // rbHigh
             // 
-            this.rbLow.AutoSize = true;
-            this.rbLow.Location = new System.Drawing.Point(6, 16);
-            this.rbLow.Name = "rbLow";
-            this.rbLow.Size = new System.Drawing.Size(41, 17);
-            this.rbLow.TabIndex = 12;
-            this.rbLow.TabStop = true;
-            this.rbLow.Text = "low";
-            this.rbLow.UseVisualStyleBackColor = true;
+            this.rbHigh.AutoSize = true;
+            this.rbHigh.Location = new System.Drawing.Point(6, 64);
+            this.rbHigh.Name = "rbHigh";
+            this.rbHigh.Size = new System.Drawing.Size(50, 21);
+            this.rbHigh.TabIndex = 14;
+            this.rbHigh.TabStop = true;
+            this.rbHigh.Text = "high";
+            this.rbHigh.UseVisualStyleBackColor = true;
             // 
             // rbNormal
             // 
             this.rbNormal.AutoSize = true;
             this.rbNormal.Location = new System.Drawing.Point(6, 40);
             this.rbNormal.Name = "rbNormal";
-            this.rbNormal.Size = new System.Drawing.Size(56, 17);
+            this.rbNormal.Size = new System.Drawing.Size(65, 21);
             this.rbNormal.TabIndex = 13;
             this.rbNormal.TabStop = true;
             this.rbNormal.Text = "normal";
             this.rbNormal.UseVisualStyleBackColor = true;
             // 
-            // rbHigh
+            // rbLow
             // 
-            this.rbHigh.AutoSize = true;
-            this.rbHigh.Location = new System.Drawing.Point(6, 64);
-            this.rbHigh.Name = "rbHigh";
-            this.rbHigh.Size = new System.Drawing.Size(45, 17);
-            this.rbHigh.TabIndex = 14;
-            this.rbHigh.TabStop = true;
-            this.rbHigh.Text = "high";
-            this.rbHigh.UseVisualStyleBackColor = true;
+            this.rbLow.AutoSize = true;
+            this.rbLow.Location = new System.Drawing.Point(6, 16);
+            this.rbLow.Name = "rbLow";
+            this.rbLow.Size = new System.Drawing.Size(45, 21);
+            this.rbLow.TabIndex = 12;
+            this.rbLow.TabStop = true;
+            this.rbLow.Text = "low";
+            this.rbLow.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
@@ -273,12 +274,12 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // progressBar1
+            // progressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(101, 448);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(200, 30);
-            this.progressBar1.TabIndex = 15;
+            this.progressBar.Location = new System.Drawing.Point(101, 448);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(200, 30);
+            this.progressBar.TabIndex = 15;
             // 
             // label2
             // 
@@ -297,7 +298,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(784, 488);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnClose);
@@ -344,7 +345,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label label2;
 
     }
