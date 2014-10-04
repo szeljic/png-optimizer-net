@@ -173,6 +173,7 @@
             this.listOfFiles.TabIndex = 9;
             this.listOfFiles.UseCompatibleStateImageBehavior = false;
             this.listOfFiles.View = System.Windows.Forms.View.Details;
+            this.listOfFiles.SelectedIndexChanged += new System.EventHandler(this.listOfFiles_SelectedIndexChanged);
             // 
             // columnHeader1
             // 

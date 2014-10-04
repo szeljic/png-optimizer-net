@@ -31,6 +31,7 @@ namespace PNGOptimizer
             this.destinationTB.Size = new System.Drawing.Size(600, 30);
             this.btnFile.Checked = true;
             this.rbNormal.Checked = true;
+            this.btnRemove.Enabled = false;
         }
               
         private void radioButton1_Click(object sender, EventArgs e)
@@ -231,6 +232,7 @@ namespace PNGOptimizer
         private void btnClear_Click(object sender, EventArgs e)
         {
             listOfFiles.Items.Clear();
+            this.btnRemove.Enabled = false;
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -249,6 +251,8 @@ namespace PNGOptimizer
                 }
                 i++;
             }
+            this.btnRemove.Enabled = false;
+
         }
 
         private void bwDoWork(object sender, DoWorkEventArgs e)
@@ -270,6 +274,18 @@ namespace PNGOptimizer
         private void bwProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             this.progressBar.Value = e.ProgressPercentage;
+        }
+
+        private void listOfFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listOfFiles.SelectedItems.Count != 0)
+            {
+                this.btnRemove.Enabled = true;
+            }
+            else
+            {
+                this.btnRemove.Enabled = false;
+            }
         }
 
     }
