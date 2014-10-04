@@ -53,6 +53,7 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -287,9 +288,16 @@
             this.label2.Font = new System.Drawing.Font("Microsoft MHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(307, 455);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 19);
+            this.label2.Size = new System.Drawing.Size(99, 19);
             this.label2.TabIndex = 16;
-            this.label2.Text = "label2";
+            this.label2.Text = "PNG Optimizer";
+            // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.WorkerSupportsCancellation = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwDoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwProgressChanged);
             // 
             // Form1
             // 
@@ -347,6 +355,7 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label label2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
 
     }
 }

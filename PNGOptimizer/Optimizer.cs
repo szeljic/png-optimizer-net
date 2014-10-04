@@ -13,6 +13,7 @@ namespace PNGOptimizer
         ConcurrentStack<String> list;
         private string destination;
         private int quality;
+        public int numberOfDone = 0, numberOfAll = 0;
 
         public Optimizer(ListView listOfFiles, string destination, int quality)
         {
@@ -22,6 +23,7 @@ namespace PNGOptimizer
             {
                 path = item.SubItems[3].Text;
                 list.Push(path);
+                numberOfAll++;
             }
 
             this.destination = destination;
@@ -38,6 +40,7 @@ namespace PNGOptimizer
             {
                 list.TryPop(out path);
                 process.executeProcess(path, this.destination, quality);
+                numberOfDone++;
             }
             Cursor.Current = Cursors.Default;
         }

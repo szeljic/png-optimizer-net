@@ -16,6 +16,7 @@ namespace PNGOptimizer
     public partial class Form1 : Form
     {
         private Thread thread;
+        Optimizer optimizer;
 
         public Form1()
         {
@@ -31,6 +32,8 @@ namespace PNGOptimizer
             this.destinationTB.Size = new System.Drawing.Size(600, 30);
             this.btnFile.Checked = true;
             this.rbNormal.Checked = true;
+
+            
         }
               
         private void radioButton1_Click(object sender, EventArgs e)
@@ -180,7 +183,20 @@ namespace PNGOptimizer
 
         private void btnOptimize_Click(object sender, EventArgs e)
         {
-            progressBar.Maximum = listOfFiles.Items.Count;
+            if (this.listOfFiles.Items.Count == 0)
+            {
+                this.label2.Text = @"Please load images.";
+                return;
+            }
+
+            if (this.destinationTB.Text.Equals(""))
+            {
+                this.label2.Text = @"Please specify destination.";
+                return;
+            }
+
+            this.label2.Text = @"Optimization in progress...";
+            progressBar.Maximum = 100;
             progressBar.Value = 0;
 
             int quality;
@@ -197,14 +213,16 @@ namespace PNGOptimizer
                 quality = 3;
             }
 
-            Optimizer optimizer = new Optimizer(listOfFiles, destinationTB.Text, quality);
+            optimizer = new Optimizer(listOfFiles, destinationTB.Text, quality);
             thread = new Thread(new ThreadStart(optimizer.startOptimization));
             thread.IsBackground = true;
             thread.Start();
+            this.backgroundWorker.RunWorkerAsync();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.backgroundWorker.CancelAsync();
             this.Close();
         }
 
@@ -230,5 +248,27 @@ namespace PNGOptimizer
                 i++;
             }
         }
+
+        private void bwDoWork(object sender, DoWorkEventArgs e)
+        {
+            while(this.progressBar.Value != this.progressBar.Maximum)
+            {
+                Thread.Sleep(100);
+                this.Invoke(new MethodInvoker(delegate() {
+                    (sender as BackgroundWorker).ReportProgress((100 * optimizer.numberOfDone) / optimizer.numberOfAll);
+                }));
+            }
+
+            this.Invoke(new MethodInvoker(delegate()
+            {
+                this.label2.Text = @"Done.";
+            }));
+        }
+
+        private void bwProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.progressBar.Value = e.ProgressPercentage;
+        }
+
     }
 }
