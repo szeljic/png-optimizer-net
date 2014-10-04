@@ -15,6 +15,7 @@ namespace PNGOptimizer
 {
     public partial class Form1 : Form
     {
+        Thread thread;
         public Form1()
         {
             InitializeComponent();
@@ -194,13 +195,18 @@ namespace PNGOptimizer
 
 
             Optimizer optimizer = new Optimizer(listOfFiles, destinationTB.Text, quality);
-            Thread thread = new Thread(new ThreadStart(optimizer.startOptimization));
+            thread = new Thread(new ThreadStart(optimizer.startOptimization));
+            thread.IsBackground = true;
             thread.Start();
             
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            if (thread.IsAlive)
+            {
+                thread.Abort();
+            }
             this.Close();
         }
 
