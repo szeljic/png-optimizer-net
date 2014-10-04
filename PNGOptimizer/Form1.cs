@@ -208,5 +208,23 @@ namespace PNGOptimizer
         {
             listOfFiles.Items.Clear();
         }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            foreach(ListViewItem item in listOfFiles.SelectedItems)
+            {
+                listOfFiles.Items.Remove(item);
+            }
+
+            int i = 1;
+            foreach (ListViewItem item in listOfFiles.Items)
+            {
+                if (Int32.Parse(item.SubItems[0].Text) != i)
+                {
+                    item.SubItems[0].Text = i.ToString();
+                }
+                i++;
+            }
+        }
     }
 }
