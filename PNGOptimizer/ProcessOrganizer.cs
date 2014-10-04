@@ -15,13 +15,26 @@ namespace PNGOptimizer
 
         }
 
-        public void executeProcess(string path, string destination)
+        public void executeProcess(string path, string destination, int quality)
         {
             try
             {
                 ProcessStartInfo info = new ProcessStartInfo();
                 info.FileName = @"Optimizer\\optipng.exe";
-                info.Arguments = @"-o7 " + path;
+
+                if(quality == 1)
+                {
+                    info.Arguments = @"-o3 " + path;
+                }
+                else if(quality == 2)
+                {
+                    info.Arguments = @"-o5 " + path;
+                }
+                else
+                {
+                    info.Arguments = @"-o7 " + path;
+                }
+
                 info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
 
                 using (Process process = Process.Start(info))

@@ -178,8 +178,22 @@ namespace PNGOptimizer
 
         private void btnOptimize_Click(object sender, EventArgs e)
         {
+            int quality;
+            if (rbLow.Checked)
+            {
+                quality = 1;
+            }
+            else if(rbNormal.Checked)
+            {
+                quality = 2;
+            }
+            else
+            {
+                quality = 3;
+            }
 
-            Optimizer optimizer = new Optimizer(listOfFiles, destinationTB.Text);
+
+            Optimizer optimizer = new Optimizer(listOfFiles, destinationTB.Text, quality);
             Thread thread = new Thread(new ThreadStart(optimizer.startOptimization));
             thread.Start();
             

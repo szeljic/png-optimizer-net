@@ -12,8 +12,9 @@ namespace PNGOptimizer
     {
         ConcurrentStack<String> list;
         private string destination;
+        private int quality;
 
-        public Optimizer(ListView listOfFiles, string destination)
+        public Optimizer(ListView listOfFiles, string destination, int quality)
         {
             list = new ConcurrentStack<string>();
             string path;
@@ -22,7 +23,9 @@ namespace PNGOptimizer
                 path = item.SubItems[3].Text;
                 list.Push(path);
             }
+
             this.destination = destination;
+            this.quality = quality;
         }
 
         public void startOptimization()
@@ -34,7 +37,7 @@ namespace PNGOptimizer
             while(!list.IsEmpty)
             {
                 list.TryPop(out path);
-                process.executeProcess(path, this.destination);
+                process.executeProcess(path, this.destination, quality);
             }
             Cursor.Current = Cursors.Default;
         }
