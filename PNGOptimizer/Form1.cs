@@ -203,5 +203,10 @@ namespace PNGOptimizer
         {
             this.Close();
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            listOfFiles.Items.Clear();
+        }
     }
 }

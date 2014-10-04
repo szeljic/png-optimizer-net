@@ -22,17 +22,20 @@ namespace PNGOptimizer
                 ProcessStartInfo info = new ProcessStartInfo();
                 info.FileName = @"Optimizer\\optipng.exe";
 
-                if(quality == 1)
+                switch (quality)
                 {
-                    info.Arguments = @"-o3 " + path;
-                }
-                else if(quality == 2)
-                {
-                    info.Arguments = @"-o5 " + path;
-                }
-                else
-                {
-                    info.Arguments = @"-o7 " + path;
+                    case 1:
+                        info.Arguments = @"-o3 " + path;
+                        break;
+                    case 2:
+                        info.Arguments = @"-o5 " + path;
+                        break;
+                    case 3:
+                        info.Arguments = @"-o7 " + path;
+                        break;
+                    default:
+                        info.Arguments = path;
+                        break;
                 }
 
                 info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
